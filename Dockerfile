@@ -1,5 +1,5 @@
 #FROM php:7.2-apache
-FROM php:7.3-apache
+FROM php:7.4-apache
 #FROM php:7.1-apache
 #XFrom php:7.1-fpm
 
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     g++
 
 RUN apt-get update && apt-get install -y libzip-dev zlib1g-dev chromium && docker-php-ext-install zip
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && docker-php-ext-install gd zip
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && docker-php-ext-install gd zip
 
 RUN apt-get update
 RUN apt-get update && apt-get install -my wget gnupg

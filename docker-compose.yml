@@ -2,7 +2,7 @@ version: "2.1"
 services:
  db:
   image: mysql:5.7
-  container_name: mysql-upgrade-presta-dev-php7.3
+  container_name: mysql-upgrade-presta-dev-php7.4
   volumes:
    - ./database:/var/lib/mysql
   environment:
@@ -16,7 +16,7 @@ services:
    # ipv6_address: 2002:0a01:2500::2
  web:
   build: . #for apache container
-  container_name: apache-upgrade-presta-dev-php7.3
+  container_name: apache-upgrade-presta-dev-php7.4
   links:
    - db
   ports:
@@ -33,11 +33,11 @@ services:
     #ipv6_address: 2002:0a01:2500::3
  phpmyadmin:
   image: phpmyadmin/phpmyadmin
-  container_name: phpmyadmin-upgrade-presta-dev-php7.3
+  container_name: phpmyadmin-upgrade-presta-dev-php7.4
   ports :
    - 8006:80
   links:
-   - db:mysql-upgrade-presta-dev-php7.3
+   - db:mysql-upgrade-presta-dev-php7.4
   networks:
    app_net:
     ipv4_address: 10.1.19.4
