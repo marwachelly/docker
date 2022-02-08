@@ -1,0 +1,19 @@
+{
+    "name": "task-runner",
+    "version": "1.0.0",
+    "author": "wissem.hamza",
+    "dependencies": {
+        "gulp": "^3.9.1",
+        "gulp-bump": "^2.5.1",
+        "gulp-shell": "^0.5.2",
+        "gulp-sonar": "3.0.1",
+        "gulp-util": "^3.0.8",
+        "os": "^0.1.1",
+        "run-sequence": "^1.2.2"
+    },
+    "devDependencies": {
+        "ajax-request": "^1.2.3",
+        "sleep": "^5.1.1",
+        "sonarqube-scanner": "^2.0.2"
+    }
+}

@@ -1,0 +1,2 @@
+#!/bin/bash
+sh $(pwd)/../../Equipe_Prestashop_Test_Dev_Env/task_runner.sh fulltest

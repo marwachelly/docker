@@ -1,0 +1,55 @@
+version: "2.1"
+services:
+ db:
+  image: mysql:5.7
+  container_name: mysql-upgrade-presta-dev-php7.3
+  volumes:
+   - ./database:/var/lib/mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=sifast2016
+   - MYSQL_DATABASE=prestashop1730beta1
+  ports:
+   - "3334:3306"
+  networks:
+   app_net:
+    ipv4_address: 10.1.19.2
+   # ipv6_address: 2002:0a01:2500::2
+ web:
+  build: . #for apache container
+  container_name: apache-upgrade-presta-dev-php7.3
+  links:
+   - db
+  ports:
+   - 8005:80
+   - 8090:443
+  volumes:
+   - ../../presta_test:/var/www/html/test
+   - ../presta_test:/var/www/html
+  environment:
+   DEV_USERNAME: $DEVELOPPER
+  networks:
+   app_net:
+    ipv4_address: 10.1.19.3
+    #ipv6_address: 2002:0a01:2500::3
+ phpmyadmin:
+  image: phpmyadmin/phpmyadmin
+  container_name: phpmyadmin-upgrade-presta-dev-php7.3
+  ports :
+   - 8006:80
+  links:
+   - db:mysql-upgrade-presta-dev-php7.3
+  networks:
+   app_net:
+    ipv4_address: 10.1.19.4
+    #ipv6_address: "2002:0a01:2500::4"
+networks:
+ app_net:
+  driver: bridge
+#  enable_ipv6: true
+  ipam:
+   driver: default
+   config:
+   - subnet: 10.1.19.0/24
+     gateway: 10.1.19.1
+   #- subnet: 2002:0a01:2500::/64
+    # gateway: 2002:0a01:2500::1
